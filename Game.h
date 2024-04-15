@@ -46,11 +46,12 @@ private:
 	
 	// Pong specific
 	// Direction of paddle
-	int mPaddleDir;
+	int left_mPaddleDir;
+    int right_mPaddleDir;
     
 	// Position of paddle
     // TODO: to add a multiple player mode
-	Vector2 mPaddlePos;
+	Vector2 left_mPaddlePos;
     Vector2 right_mPaddlePos;
     
 	// Position of ball
