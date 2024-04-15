@@ -14,6 +14,8 @@ int main(int argc, char** argv)
 	bool success = game.Initialize();
     bool player_mode = 'multiple';
     
+    
+    
 	if (success)
 	{
 		game.RunLoop();
