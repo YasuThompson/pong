@@ -10,11 +10,9 @@
 
 int main(int argc, char** argv)
 {
-	Game game;
+    bool if_multiple_player = true;
+	Game game(if_multiple_player);
 	bool success = game.Initialize();
-    bool player_mode = 'multiple';
-    
-    
     
 	if (success)
 	{

@@ -21,7 +21,7 @@ struct Vector2
 class Game
 {
 public:
-	Game();
+	Game(bool multiplePlayerMode);
 	// Initialize the game
 	bool Initialize();
 	// Runs the game loop until the game is over
@@ -42,6 +42,7 @@ private:
 	Uint32 mTicksCount;
 	// Game should continue to run
 	bool mIsRunning;
+    bool mMultiplePlayerMode;  // Variable indicating whether multiple player mode is active
 	
 	// Pong specific
 	// Direction of paddle
