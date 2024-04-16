@@ -7,3 +7,7 @@ The original Pong game supported two players. Instead of the wall on the right s
 
 ## Exercise 1.2
 Many pinball games support "multiball," where multiple balls are in play simultaneously. Multiball can be fun in Pong too! To support multiball, let's first create a Ball struct containing two Vector2 variables for position and velocity. Then, add a member variable of type `std::vector<Ball>` to the Game class to accommodate multiple balls. Next, modify the code in `Game::Initialize` to initialize the positions and velocities of multiple balls. In `Game::UpdateGame`, change the ball update code. Instead of using mBallVel and mBallPos variables, loop through the `std::vector` in the code to update all the balls.
+
+
+### Bug notes
+- Hit detection of the ball at the left paddle is not accurate. (A hit is detected a little bit outside the left paddle.)
