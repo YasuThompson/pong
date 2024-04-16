@@ -217,7 +217,7 @@ void Game::UpdateGame()
         left_y_diff <= paddleH / 2.0f &&
 		// We are in the correct x-position
         // TODO: to write this paddle-ball collision rule in a better way
-        20.0f <= mBallPos.x && mBallPos.x <= 25.0f &&
+        thickness/2 <= mBallPos.x && mBallPos.x <= thickness &&
 		// The ball is moving to the left
 		mBallVel.x < 0.0f)
 	{
@@ -230,14 +230,6 @@ void Game::UpdateGame()
 	{
         // Game over
 		mIsRunning = false;
-	}
-    
-    
-    
-	// Did the ball collide with the right wall?
-	else if (mBallPos.x >= (window_height - thickness) && mBallVel.x > 0.0f)
-	{
-		mBallVel.x *= -1.0f;
 	}
 	
 	// Did the ball collide with the top wall?
@@ -253,41 +245,40 @@ void Game::UpdateGame()
 	}
     
     
-    // Take absolute value of difference at the right side
-    right_y_diff = (right_y_diff > 0.0f) ? right_y_diff : -right_y_diff;
-    if (
-        // Our y-difference is small enough
-        right_y_diff <= paddleH / 2.0f &&
-        // We are in the correct x-position
-        20.0f <= mBallPos.x && mBallPos.x <= 25.0f &&
-        // The ball is moving to the left
-        mBallVel.x < 0.0f)
-    {
-        mBallVel.x *= -1.0f;
-    }
-    // Did the ball go off the screen? (if so, end game)
-    else if (mBallPos.x <= 0.0f)
-    {
-        mIsRunning = false;
-    }
-    // Did the ball collide with the right wall?
-    else if (mBallPos.x >= (window_height - thickness) && mBallVel.x > 0.0f)
-    {
-        mBallVel.x *= -1.0f;
+    // Cases when the ball collides at the right end
+    
+    if(mMultiplePlayerMode==false){
+        // Did the ball collide with the right wall?
+        if (mBallPos.x >= (window_height - thickness) && mBallVel.x > 0.0f)
+        {
+            mBallVel.x *= -1.0f;
+        }
+    } else {
+        // TODO: to write right paddle collision detection here
+
+        // Take absolute value of difference at the right side
+        right_y_diff = (right_y_diff > 0.0f) ? right_y_diff : -right_y_diff;
+        if (
+            // Our y-difference is small enough
+            right_y_diff <= paddleH / 2.0f &&
+            // We are in the correct x-position
+            window_height - thickness <= mBallPos.x && mBallPos.x <= window_height &&
+            // The ball is moving to the left
+            mBallVel.x > 0.0f)
+        {
+            mBallVel.x *= -1.0f;
+        }
+        // Did the ball go off the screen? (if so, end game)
+        // TODO: to write right wall game over condition here
+        else if (window_height <= mBallPos.x)
+        {
+            mIsRunning = false;
+        }
+        
     }
     
-    // Did the ball collide with the top wall?
-    if (mBallPos.y <= thickness && mBallVel.y < 0.0f)
-    {
-        mBallVel.y *= -1;
-    }
-    // Did the ball collide with the bottom wall?
-    else if (mBallPos.y >= (window_width - thickness) &&
-        mBallVel.y > 0.0f)
-    {
-        mBallVel.y *= -1;
-    }
     
+
     
     
     
